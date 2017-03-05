@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Movie List using Retrofit</string>
+    <string name="app_name">Parse JSON using Retrofit</string>
     <string name="data_unavailable">Content Unavailable!\nClick Sync to load data</string>
 </resources>
