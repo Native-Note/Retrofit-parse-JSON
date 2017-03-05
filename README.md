@@ -1,3 +1,3 @@
-# retrofit-movie-list
+# Retrofit-parse-JSON
 
-A sample of uses of Retrofit (REST client for Android)
+A sample project to parse JSON using Retrofit2 (a type-safe REST client for Android)
