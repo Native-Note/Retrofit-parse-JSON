@@ -63,11 +63,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         ViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            year = (TextView) view.findViewById(R.id.rating);
-            release = (TextView) view.findViewById(R.id.release);
-            plot = (TextView) view.findViewById(R.id.plot);
-            actors = (TextView) view.findViewById(R.id.actors);
+            title = view.findViewById(R.id.title);
+            year = view.findViewById(R.id.rating);
+            release = view.findViewById(R.id.release);
+            plot = view.findViewById(R.id.plot);
+            actors = view.findViewById(R.id.actors);
 
             view.setOnClickListener(this);
         }
