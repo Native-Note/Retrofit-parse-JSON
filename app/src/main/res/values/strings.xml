@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Parse JSON using Retrofit</string>
     <string name="data_unavailable">Content Unavailable!\nClick Sync to load data</string>
+    <string name="release_year">Release year:</string>
 </resources>

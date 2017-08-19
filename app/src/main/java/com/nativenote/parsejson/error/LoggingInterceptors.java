@@ -17,7 +17,7 @@ public class LoggingInterceptors {
             .addInterceptor(new LoggingInterceptor())
             .build();
 
-    public void run() throws Exception {
+    private void run() throws Exception {
         Request request = new Request.Builder()
                 .url("https://publicobject.com/helloworld.txt")
                 .build();

@@ -50,21 +50,23 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(pDialog != null && pDialog.isShowing()){
-                    pDialog.dismiss();
-                }
-
-                pDialog = new ProgressDialog(MainActivity.this);
-                pDialog.setMessage("Loading");
-                pDialog.setCancelable(false);
-                pDialog.show();
-
-                SyncData();
+                syncData();
             }
         });
+
+        syncData();
     }
 
-    private void SyncData() {
+    private void syncData() {
+        if(pDialog != null && pDialog.isShowing()){
+            pDialog.dismiss();
+        }
+
+        pDialog = new ProgressDialog(MainActivity.this);
+        pDialog.setMessage("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        
         ApiRequestUrls apis = ApiClient.getApiInterface(Utils.END_POINT);
         Call<List<MovieInfo>> call = apis.getMovies();
         call.enqueue(new Callback<List<MovieInfo>>() {
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 movies.clear();
                 movies = response.body();
 
+                assert movies != null;
                 if (movies.isEmpty()) {
                     recyclerView.setVisibility(View.GONE);
                     emptyView.setVisibility(View.VISIBLE);

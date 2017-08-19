@@ -34,25 +34,27 @@ public class ErrorHandlingExecutorCallAdapterFactory extends CallAdapter.Factory
     }
 
     @Override
-    public CallAdapter<?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
+    public CallAdapter<?, ?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
         if ($Gson$Types.getRawType(returnType) != Call.class) {
             return null;
         }
         final Type responseType = getCallResponseType(returnType);
-        return new CallAdapter<Call<?>>() {
+
+        return new CallAdapter<Object, Object>() {
+
             @Override
             public Type responseType() {
                 return responseType;
             }
 
             @Override
-            public <R> Call<R> adapt(Call<R> call) {
+            public Object adapt(Call<Object> call) {
                 return new ExecutorCallbackCall<>(callbackExecutor, call);
             }
         };
     }
 
-    static Type getCallResponseType(Type returnType) {
+    private static Type getCallResponseType(Type returnType) {
         if (!(returnType instanceof ParameterizedType)) {
             throw new IllegalArgumentException(
                     "Call return type must be parameterized as Call<Foo> or Call<? extends Foo>");
@@ -69,7 +71,7 @@ public class ErrorHandlingExecutorCallAdapterFactory extends CallAdapter.Factory
     }
 
 
-    public static Type getSingleParameterUpperBound(ParameterizedType type) {
+    private static Type getSingleParameterUpperBound(ParameterizedType type) {
         Type[] types = type.getActualTypeArguments();
         if (types.length != 1) {
             throw new IllegalArgumentException(

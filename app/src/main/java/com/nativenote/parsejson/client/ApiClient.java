@@ -34,8 +34,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by IMTIAZ on 3/5/17.
  */
 public class ApiClient {
-    public static final int CONNECTION_TIME_OUT = 10;
-    public static final int CONNECTION_READ_TIME_OUT = 30;
+    private static final int CONNECTION_TIME_OUT = 10;
+    private static final int CONNECTION_READ_TIME_OUT = 30;
 
     public static ApiRequestUrls getApiInterface(String api_url) {
 
@@ -54,9 +54,10 @@ public class ApiClient {
 //                        return false;
 //                    }
 //                })
+//                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .serializeNulls()
                 /*
-                   To support malforms character(s)
+                   To support malformed character(s)
                  */
                 .setLenient()
                 .create();

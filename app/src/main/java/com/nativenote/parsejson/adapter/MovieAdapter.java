@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
-    private Context context;
+    private final Context context;
     private List<MovieInfo> movies;
 
     public MovieAdapter(Context context, List<MovieInfo> movies) {
@@ -44,7 +44,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         MovieInfo contact = movies.get(position);
         holder.title.setText(contact.getTitle());
         holder.year.setText(String.valueOf(contact.getInfo().getRating()));
-        holder.release.setText("Release year: " + contact.getYear());
+        holder.release.setText(context.getResources().getString(R.string.release_year) + contact.getYear());
         holder.actors.setText(TextUtils.join(", ", contact.getInfo().getActors()));
         holder.plot.setText(contact.getInfo().getPlot());
     }
@@ -55,9 +55,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView title, year, release, plot, actors;
+        private final TextView title;
+        private final TextView year;
+        private final TextView release;
+        private final TextView plot;
+        private final TextView actors;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
             year = (TextView) view.findViewById(R.id.rating);

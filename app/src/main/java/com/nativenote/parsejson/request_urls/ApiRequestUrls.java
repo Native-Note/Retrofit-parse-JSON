@@ -12,6 +12,6 @@ import retrofit2.http.GET;
  */
 
 public interface ApiRequestUrls {
-    @GET("sample/json/moviedata.json")
+    @GET("nalindak/aws-dynamodb-movie-example/master/moviedata.json")
     Call<List<MovieInfo>> getMovies();
 }
